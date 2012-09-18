@@ -15,3 +15,4 @@
   a = o.getElementsByTagName('base')[0];
   a ? l.insertBefore(u, a) : l.appendChild(u);
 })(window, document, 'seajs');
+/*吃亏了，好不容易写好的文件丢了*/
