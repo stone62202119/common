@@ -1,0 +1,43 @@
+<table id="table">
+    <tr>
+        <th>ID</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>职业</th>
+        <th>地区</th>
+        <th>邮箱</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>admin</td>
+        <td>23</td>
+        <td>程序员</td>
+        <td>天津</td>
+        <td>admin@kali.com</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>guest</td>
+        <td>23</td>
+        <td>测试员</td>
+        <td>北京</td>
+        <td>guest@kali.com</td>
+    </tr>
+</table>
+<input id="Button1" type="button" value="导出EXCEL"onclick="tableToExcel('table','测试')" />
+<script>
+    var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,',
+        template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><?xml version="1.0" encoding="UTF-8" standalone="yes"?><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
+          base64 = function (s) { return window.btoa(unescape(encodeURIComponent(s))) },
+          format = function (s, c) {
+              return s.replace(/{(\w+)}/g,
+              function (m, p) { return c[p]; })
+          }
+        return function (table, name) {
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML }
+            window.location.href = uri + base64(format(template, ctx))
+        }
+    })()
+</script>
