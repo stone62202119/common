@@ -13,6 +13,6 @@
   },
   "devDependencies": {
     "express": "^4.17.1",
-    "webpack": "^4.41.5"
+    "webpack": "^5.75.0"
   }
 }
